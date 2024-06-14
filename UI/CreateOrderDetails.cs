@@ -1,64 +1,109 @@
 ﻿using BuisnesEntityLayer.Entities;
+using BuisnesEntityLayer.ViewModel;
 using BuisnesLogicLayer.Product;
-using BuisnesLogicLayer.view;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using UI.Utility;
+
 
 namespace UI
 {
     public partial class CreateOrderDetails : Form
     {
-        private List<AddProductViewModel> _orderDetailsList;
-        public CreateOrderDetails(List<AddProductViewModel> orderDetailsList)
+        private List<AddProductOrderDetailsViewModel> _orderDetailsList;
+        private AddProductOrderDetailsViewModel _OneOrderDetailsForEdit;
+
+        public CreateOrderDetails(List<AddProductOrderDetailsViewModel> orderDetailsList, AddProductOrderDetailsViewModel oneorderDetails)
         {
             InitializeComponent();
             _orderDetailsList = orderDetailsList;
+            _OneOrderDetailsForEdit = oneorderDetails;
         }
 
-        AddProductViewModel PviewModel = new AddProductViewModel();
+
+        AddProductOrderDetailsViewModel PviewModel = new AddProductOrderDetailsViewModel();
 
         ProductBLL productBLL = new ProductBLL();
 
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var s = comboBox1.SelectedItem;
-
-            var products = productBLL.GetAll();
-
-            foreach (var product in products)
+            if (_OneOrderDetailsForEdit.EditStatus == false)
             {
-                if (product.Name == s)
-                {
 
-                    PviewModel.ProductId = product.Id;
-                    PviewModel.ProductName = product.Name;
-                    PviewModel.OneProductPrice = product.Price;
-                    PviewModel.Price= product.Price;
-                    PviewModel.Count = (int)numericUpDown1.Value;
-                    textBox1.Text = product.Price.ToString();
-                    textBox2.Text = product.Price.ToString();
+                var res = comboBox1.SelectedItem;
+                var products = productBLL.GetAll();
+
+                foreach (var product in products)
+                {
+                    if (product.Name == res)
+                    {
+
+                        PviewModel.ProductId = product.Id;
+                        PviewModel.ProductName = product.Name;
+                        PviewModel.OneProductPrice = product.Price;
+                        PviewModel.Price = product.Price;
+                        PviewModel.Count = (int)numericUpDown1.Value;
+                        textBox1.Text = product.Price.ToString();
+                        textBox2.Text = product.Price.ToString();
+                    }
                 }
+
+
+            }
+            else
+            {
+
+                var res = comboBox1.SelectedItem;
+                var products = productBLL.GetAll();
+
+                foreach (var product in products)
+                {
+                    if (product.Name == res)
+                    {
+
+                        PviewModel.ProductId = product.Id;
+                        PviewModel.ProductName = product.Name;
+                        PviewModel.OneProductPrice = product.Price;
+                        PviewModel.Price = product.Price;
+                        PviewModel.Count = (int)numericUpDown1.Value;
+                        textBox1.Text = product.Price.ToString();
+                        textBox2.Text = product.Price.ToString();
+                    }
+                }
+
+
+
+
             }
 
-            MessageBox.Show(s.ToString());
-
         }
-      
+
         private void AddProductToFactorForm_Load(object sender, EventArgs e)
         {
-            var products = productBLL.GetAll();
-
-            foreach (var product in products)
+            if (_OneOrderDetailsForEdit.EditStatus == false)
             {
-                comboBox1.Items.Add(product.Name);
+
+                var products = productBLL.GetAll();
+
+                foreach (var product in products)
+                {
+                    comboBox1.Items.Add(product.Name);
+                }
+            }
+            else
+            {
+                PviewModel = _OneOrderDetailsForEdit;
+
+
+                var products = productBLL.GetAll();
+
+                foreach (var product in products)
+                {
+                    comboBox1.Items.Add(product.Name);
+                }
+                comboBox1.SelectedItem = _OneOrderDetailsForEdit.ProductName;
+                textBox1.Text = _OneOrderDetailsForEdit.OneProductPrice.ToString();
+                numericUpDown1.Value = _OneOrderDetailsForEdit.Count;
+                textBox2.Text = _OneOrderDetailsForEdit.Price.ToString();
+
             }
 
 
@@ -71,15 +116,27 @@ namespace UI
             PviewModel.Count = (int)numericUpDown1.Value;
             textBox2.Text = PviewModel.Price.ToString();
 
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            if (_OneOrderDetailsForEdit.EditStatus == false)
+            {
+                _orderDetailsList.Add(PviewModel);
+                this.Close();
+            }
+            else
+            {
+                _orderDetailsList.Add(PviewModel);
+             
+                this.Close();
+            }
 
-            _orderDetailsList.Add(PviewModel);
+        }
 
-            MessageBox.Show(_orderDetailsList.FirstOrDefault().ProductName);
+        private void button2_Click(object sender, EventArgs e)
+        {
             this.Close();
         }
     }

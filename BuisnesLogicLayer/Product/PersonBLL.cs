@@ -13,5 +13,22 @@ namespace DataAccessLayer.Models
         {
             return PersonDAL.ReadPerson();
         }
+
+        public Person GetPersonById(int id)
+        {
+            return PersonDAL.GetPersonById(id);
+        }
+
+        public List<Person> searchPersonByString(string pesonname)
+        {
+            return PersonDAL.SearchPerson(pesonname);
+        }
+
+        public int getpersonIdByName(string name)
+        {
+            return PersonDAL.GetPersonIdByName(name);
+        }
+        
+
     }
 }

@@ -94,21 +94,25 @@
             // 
             // button5
             // 
+            button5.Enabled = false;
             button5.Location = new Point(579, 128);
             button5.Name = "button5";
             button5.Size = new Size(112, 34);
             button5.TabIndex = 7;
             button5.Text = "حذف";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += button5_Click;
             // 
             // button4
             // 
+            button4.Enabled = false;
             button4.Location = new Point(739, 128);
             button4.Name = "button4";
             button4.Size = new Size(112, 34);
             button4.TabIndex = 6;
             button4.Text = "ویرایش";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += button4_Click;
             // 
             // button3
             // 
@@ -169,9 +173,12 @@
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.Location = new Point(0, 0);
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.ReadOnly = true;
             dataGridView1.RowHeadersWidth = 62;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(1151, 316);
             dataGridView1.TabIndex = 0;
+            dataGridView1.CellContentClick += dataGridView1_CellContentClick;
             // 
             // CreateOrder
             // 

@@ -23,6 +23,23 @@ namespace BuisnesLogicLayer.Product
            
         }
 
+        public bool UpdateProduct(int id,Order order) 
+        {
+            try
+            {
+                pro.UpdateProductById(id, order);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+          
+
+
+        }
+
         public int GetNewNumberForOrder()
         {
           
@@ -47,6 +64,24 @@ namespace BuisnesLogicLayer.Product
         {
             var res = pro.GetOrderIdByNumber(id);
             return res;
+        }
+
+        public Order GetOrderById(int id)
+        {
+            return pro.GetProductById(id);
+        }
+
+        public bool DeleteOrder(int id)
+        {
+            try
+            {
+                pro.DeletProductById(id);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
     }

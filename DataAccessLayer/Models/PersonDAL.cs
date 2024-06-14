@@ -20,17 +20,24 @@ namespace DataAccessLayer.Models
             return ctx.Person.ToList();
         }
 
-        public List<Person> ReadByPersonName(string PersonName)
+        public List<Person> SearchPerson(string persontext)
         {
-            var q = ctx.Person.Where(h => h.Name == PersonName);
-
-            return q.ToList();
+            //var query = ctx.Person.Where(x => x.Name.Contains(persontext)).ToList();
+            var query = ctx.Person.Where(x => x.Name.Contains(persontext) || x.CompanyName.Contains(persontext) || x.Tell.Contains(persontext) 
+            || x.Email.Contains(persontext)).ToList();
+            return query;
         }
 
-        public Person ReadByPersonID(int id)
+       public Person GetPersonById(int id)
         {
-            var query = ctx.Person.FirstOrDefault(h => h.Id == id);
+            var query = ctx.Person.Where(x => x.Id == id).FirstOrDefault();
             return query;
+        }
+
+        public int GetPersonIdByName(string name)
+        {
+            var query = ctx.Person.Where(p => p.Name == name).FirstOrDefault();
+            return query.Id;
         }
 
 

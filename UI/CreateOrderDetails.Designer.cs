@@ -140,8 +140,9 @@
             button2.TabIndex = 12;
             button2.Text = "انصراف";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
-            // AddProductToFactorForm
+            // CreateOrderDetails
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -157,7 +158,7 @@
             Controls.Add(numericUpDown1);
             Controls.Add(textBox1);
             Controls.Add(comboBox1);
-            Name = "AddProductToFactorForm";
+            Name = "CreateOrderDetails";
             Text = "AddProductToFactorForm";
             Load += AddProductToFactorForm_Load;
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
