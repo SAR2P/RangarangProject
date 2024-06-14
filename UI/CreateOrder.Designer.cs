@@ -32,7 +32,6 @@
             button2 = new Button();
             button1 = new Button();
             panel2 = new Panel();
-            button6 = new Button();
             button5 = new Button();
             button4 = new Button();
             button3 = new Button();
@@ -80,7 +79,6 @@
             // 
             // panel2
             // 
-            panel2.Controls.Add(button6);
             panel2.Controls.Add(button5);
             panel2.Controls.Add(button4);
             panel2.Controls.Add(button3);
@@ -93,16 +91,6 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1151, 492);
             panel2.TabIndex = 1;
-            // 
-            // button6
-            // 
-            button6.Location = new Point(351, 128);
-            button6.Name = "button6";
-            button6.Size = new Size(112, 34);
-            button6.TabIndex = 8;
-            button6.Text = "button6";
-            button6.UseVisualStyleBackColor = true;
-            button6.Click += button6_Click;
             // 
             // button5
             // 
@@ -219,6 +207,5 @@
         private Button button5;
         private Button button4;
         private Button button3;
-        private Button button6;
     }
 }

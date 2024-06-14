@@ -16,8 +16,8 @@ namespace UI
 {
     public partial class CreateOrderDetails : Form
     {
-        private List<OrderDetails> _orderDetailsList;
-        public CreateOrderDetails(List<OrderDetails> orderDetailsList)
+        private List<AddProductViewModel> _orderDetailsList;
+        public CreateOrderDetails(List<AddProductViewModel> orderDetailsList)
         {
             InitializeComponent();
             _orderDetailsList = orderDetailsList;
@@ -25,11 +25,15 @@ namespace UI
 
         AddProductViewModel PviewModel = new AddProductViewModel();
 
+        ProductBLL productBLL = new ProductBLL();
+
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             var s = comboBox1.SelectedItem;
 
-            foreach (var product in UtilityOne.utilityProduct)
+            var products = productBLL.GetAll();
+
+            foreach (var product in products)
             {
                 if (product.Name == s)
                 {
@@ -37,7 +41,7 @@ namespace UI
                     PviewModel.ProductId = product.Id;
                     PviewModel.ProductName = product.Name;
                     PviewModel.OneProductPrice = product.Price;
-                    PviewModel.code = product.Code;
+                    PviewModel.Price= product.Price;
                     PviewModel.Count = (int)numericUpDown1.Value;
                     textBox1.Text = product.Price.ToString();
                     textBox2.Text = product.Price.ToString();
@@ -47,10 +51,12 @@ namespace UI
             MessageBox.Show(s.ToString());
 
         }
-
+      
         private void AddProductToFactorForm_Load(object sender, EventArgs e)
         {
-            foreach (var product in UtilityOne.utilityProduct)
+            var products = productBLL.GetAll();
+
+            foreach (var product in products)
             {
                 comboBox1.Items.Add(product.Name);
             }
@@ -62,16 +68,18 @@ namespace UI
         {
 
             PviewModel.Price = PviewModel.OneProductPrice * (int)numericUpDown1.Value;
+            PviewModel.Count = (int)numericUpDown1.Value;
             textBox2.Text = PviewModel.Price.ToString();
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            UtilityOne.utilityViewsForDataGrid.Add(PviewModel);
-           
+            
 
-            MessageBox.Show(UtilityOne.utilityViewsForDataGrid.FirstOrDefault().ProductName);
+            _orderDetailsList.Add(PviewModel);
+
+            MessageBox.Show(_orderDetailsList.FirstOrDefault().ProductName);
             this.Close();
         }
     }

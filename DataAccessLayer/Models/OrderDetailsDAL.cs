@@ -45,7 +45,7 @@ namespace DataAccessLayer.Models
                 NOrderDetails = query.Single();
                 NOrderDetails.Count = NewOrderDetails.Count;
                 NOrderDetails.Price = NewOrderDetails.Price;
-                NOrderDetails.ProductId = NewOrderDetails.ProductId;
+                NOrderDetails.ProductEId = NewOrderDetails.ProductEId;
                 NOrderDetails.OrderId = NewOrderDetails.OrderId;
                 ctx.SaveChanges();
 

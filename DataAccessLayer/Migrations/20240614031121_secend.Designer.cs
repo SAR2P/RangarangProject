@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(RangarangDbContext))]
-    [Migration("20240613091000_init")]
-    partial class init
+    [Migration("20240614031121_secend")]
+    partial class secend
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -66,6 +66,9 @@ namespace DataAccessLayer.Migrations
                     b.Property<float>("Price")
                         .HasColumnType("real");
 
+                    b.Property<int>("ProductEId")
+                        .HasColumnType("int");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
@@ -76,7 +79,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductEId");
 
                     b.ToTable("OrderDetails");
                 });
@@ -110,7 +113,7 @@ namespace DataAccessLayer.Migrations
                     b.ToTable("Person");
                 });
 
-            modelBuilder.Entity("BuisnesEntityLayer.Entities.Product", b =>
+            modelBuilder.Entity("BuisnesEntityLayer.Entities.ProductE", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -118,17 +121,15 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Code")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Price")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<float>("Price")
+                        .HasColumnType("real");
 
                     b.HasKey("Id");
 
@@ -149,20 +150,25 @@ namespace DataAccessLayer.Migrations
             modelBuilder.Entity("BuisnesEntityLayer.Entities.OrderDetails", b =>
                 {
                     b.HasOne("BuisnesEntityLayer.Entities.Order", "Order")
-                        .WithMany()
+                        .WithMany("OrderDetails")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BuisnesEntityLayer.Entities.Product", "ProductName")
+                    b.HasOne("BuisnesEntityLayer.Entities.ProductE", "ProductE")
                         .WithMany()
-                        .HasForeignKey("ProductId")
+                        .HasForeignKey("ProductEId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Order");
 
-                    b.Navigation("ProductName");
+                    b.Navigation("ProductE");
+                });
+
+            modelBuilder.Entity("BuisnesEntityLayer.Entities.Order", b =>
+                {
+                    b.Navigation("OrderDetails");
                 });
 #pragma warning restore 612, 618
         }

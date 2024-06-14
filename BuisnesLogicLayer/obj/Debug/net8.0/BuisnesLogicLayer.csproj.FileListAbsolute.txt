@@ -15,3 +15,4 @@ C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesLogicLayer\bin\Debug\net8.0\Dat
 C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesLogicLayer\bin\Debug\net8.0\BuisnesEntityLayer.pdb
 C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesLogicLayer\bin\Debug\net8.0\DataAccessLayer.pdb
 C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesLogicLayer\obj\Debug\net8.0\BuisnesLogicLayer.csproj.CopyComplete
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesLogicLayer\obj\Debug\net8.0\BuisnesLogicLayer.sourcelink.json

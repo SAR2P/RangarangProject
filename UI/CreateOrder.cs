@@ -1,4 +1,5 @@
 ﻿using BuisnesEntityLayer.Entities;
+using BuisnesLogicLayer.Product;
 using BuisnesLogicLayer.view;
 using DataAccessLayer.Models;
 using System;
@@ -16,24 +17,63 @@ namespace UI
 {
     public partial class CreateOrder : Form
     {
-        private List<OrderDetails> _orderDetailsList;
+        private List<AddProductViewModel> _orderDetailsList;
         public CreateOrder()
         {
             InitializeComponent();
-            _orderDetailsList = new List<OrderDetails>();
+            _orderDetailsList = new List<AddProductViewModel>();
         }
 
         PersonBLL personBLL = new PersonBLL();
+        OrderBLL orderBLL = new OrderBLL();
+        OrderDetailsBLL detailsBLL = new OrderDetailsBLL();
 
+        private Person _Person = new Person();
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show(orderBLL.GetNewNumberForOrder().ToString());
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
+
+            try
+            {
+                var newNum = orderBLL.GetNewNumberForOrder();
+
+                Order order = new Order()
+                {
+                    PersonId = _Person.Id,
+                    Date = dateTimePicker1.Value,
+                    Number = newNum,
+
+                };
+
+                if (orderBLL.CreateOrder(order))
+                {
+                    var orderI = orderBLL.getOrederIdByNumber(order.Number);
+                    foreach (var item in _orderDetailsList)
+                    {
+                        OrderDetails details = new OrderDetails()
+                        {
+                            ProductEId = item.ProductId,
+                            Count = item.Count,
+                            Price = item.OneProductPrice,
+                            OrderId = orderI,
+                            SumPrice = item.Price
+                        };
+                        detailsBLL.createOrderDetails(details);
+                    }
+                }
+
+                MessageBox.Show("success");
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("error ocurd");
+            }
+            
         }
 
         private void CreateFactorForm_Load(object sender, EventArgs e)
@@ -46,12 +86,7 @@ namespace UI
             }
         }
 
-        private void button6_Click(object sender, EventArgs e)
-        {
-           
-            dataGridView1.DataSource = UtilityOne.utilityViewsForDataGrid;
-            MessageBox.Show(UtilityOne.utilityViewsForDataGrid.SingleOrDefault().ProductName);
-        }
+        
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -60,20 +95,20 @@ namespace UI
             {
                 if (item.Name == comboBox1.Text)
                 {
-                    MessageBox.Show(item.Id.ToString());
+                    _Person = item;
+                    MessageBox.Show(_Person.Id.ToString());
                 }
             }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            //CreateOrderDetails form3 = new CreateOrderDetails();
-            //form3.Show();
+            
             using (var form = new CreateOrderDetails(_orderDetailsList))
             {
                 form.ShowDialog();
                 dataGridView1.DataSource = null;
-                dataGridView1.DataSource = _orderDetailsList;
+                dataGridView1.DataSource = _orderDetailsList;//add to datagrid
             }
         }
     }

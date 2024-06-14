@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(RangarangDbContext))]
-    [Migration("20240613120104_ini2")]
-    partial class ini2
+    [Migration("20240614033559_sec")]
+    partial class sec
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -66,10 +66,7 @@ namespace DataAccessLayer.Migrations
                     b.Property<float>("Price")
                         .HasColumnType("real");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductNameId")
+                    b.Property<int>("ProductEId")
                         .HasColumnType("int");
 
                     b.Property<float>("SumPrice")
@@ -79,7 +76,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("OrderId");
 
-                    b.HasIndex("ProductNameId");
+                    b.HasIndex("ProductEId");
 
                     b.ToTable("OrderDetails");
                 });
@@ -121,9 +118,8 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("Code")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -156,15 +152,15 @@ namespace DataAccessLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BuisnesEntityLayer.Entities.ProductE", "ProductName")
+                    b.HasOne("BuisnesEntityLayer.Entities.ProductE", "ProductE")
                         .WithMany()
-                        .HasForeignKey("ProductNameId")
+                        .HasForeignKey("ProductEId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Order");
 
-                    b.Navigation("ProductName");
+                    b.Navigation("ProductE");
                 });
 #pragma warning restore 612, 618
         }

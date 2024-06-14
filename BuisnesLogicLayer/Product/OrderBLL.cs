@@ -8,9 +8,27 @@ namespace BuisnesLogicLayer.Product
     {
         OrderDAL pro = new OrderDAL();
 
-        public void CreateOrder(Order order)
+        public bool CreateOrder(Order order)
         {
-            pro.createProduct(order);
+            try
+            {
+
+                pro.createOrder(order);
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+           
+        }
+
+        public int GetNewNumberForOrder()
+        {
+          
+                var counting = GetAll().Count();
+                return counting + 1;
+           
         }
 
         public List<Order> GetAll()
@@ -21,8 +39,14 @@ namespace BuisnesLogicLayer.Product
 
         public Order GetProductById(int id)
         {
-            var result = pro.ReadByProductID(id);
+            var result = pro.GetProductById(id);
             return result;
+        }
+
+        public int getOrederIdByNumber(int id)
+        {
+            var res = pro.GetOrderIdByNumber(id);
+            return res;
         }
 
     }

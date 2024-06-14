@@ -136,3 +136,4 @@ C:\Users\DAIC\Desktop\RangaranTestProject\UI\obj\Debug\net8.0-windows\UI.Form1.r
 C:\Users\DAIC\Desktop\RangaranTestProject\UI\obj\Debug\net8.0-windows\UI.csproj.GenerateResource.cache
 C:\Users\DAIC\Desktop\RangaranTestProject\UI\obj\Debug\net8.0-windows\UI.CreateOrder.resources
 C:\Users\DAIC\Desktop\RangaranTestProject\UI\obj\Debug\net8.0-windows\UI.CreateOrderDetails.resources
+C:\Users\DAIC\Desktop\RangaranTestProject\UI\obj\Debug\net8.0-windows\UI.sourcelink.json

@@ -10,6 +10,18 @@ namespace DataAccessLayer.Models
 {
     public class OrderDetailsBLL
     {
+        OrderDetailsDAL OrderDetailsDAL = new OrderDetailsDAL();
+
+
+       public void createOrderDetails(OrderDetails orderDetails)
+        {
+            OrderDetailsDAL.createOrderDetails(orderDetails);
+
+        }
+
+
+
+
 
     }
 }

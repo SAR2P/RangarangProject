@@ -9,3 +9,4 @@ C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesEntity\obj\Debug\net8.0\Buisnes
 C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesEntity\obj\Debug\net8.0\refint\BuisnesEntityLayer.dll
 C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesEntity\obj\Debug\net8.0\BuisnesEntityLayer.pdb
 C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesEntity\obj\Debug\net8.0\ref\BuisnesEntityLayer.dll
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesEntity\obj\Debug\net8.0\BuisnesEntityLayer.sourcelink.json

@@ -60,17 +60,14 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<float>("Price")
-                        .HasColumnType("real");
+                    b.Property<long>("Price")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("ProductEId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<float>("SumPrice")
-                        .HasColumnType("real");
+                    b.Property<long>("SumPrice")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -125,8 +122,8 @@ namespace DataAccessLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("Price")
-                        .HasColumnType("real");
+                    b.Property<long>("Price")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 

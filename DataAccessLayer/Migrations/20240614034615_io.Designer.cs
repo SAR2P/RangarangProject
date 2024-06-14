@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(RangarangDbContext))]
-    [Migration("20240613121851_changeCodeDataType")]
-    partial class changeCodeDataType
+    [Migration("20240614034615_io")]
+    partial class io
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,23 +63,20 @@ namespace DataAccessLayer.Migrations
                     b.Property<int>("OrderId")
                         .HasColumnType("int");
 
-                    b.Property<float>("Price")
-                        .HasColumnType("real");
+                    b.Property<long>("Price")
+                        .HasColumnType("bigint");
 
-                    b.Property<int>("ProductId")
+                    b.Property<int>("ProductEId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductNameId")
-                        .HasColumnType("int");
-
-                    b.Property<float>("SumPrice")
-                        .HasColumnType("real");
+                    b.Property<long>("SumPrice")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
                     b.HasIndex("OrderId");
 
-                    b.HasIndex("ProductNameId");
+                    b.HasIndex("ProductEId");
 
                     b.ToTable("OrderDetails");
                 });
@@ -128,8 +125,8 @@ namespace DataAccessLayer.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<float>("Price")
-                        .HasColumnType("real");
+                    b.Property<long>("Price")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -155,15 +152,15 @@ namespace DataAccessLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BuisnesEntityLayer.Entities.ProductE", "ProductName")
+                    b.HasOne("BuisnesEntityLayer.Entities.ProductE", "ProductE")
                         .WithMany()
-                        .HasForeignKey("ProductNameId")
+                        .HasForeignKey("ProductEId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Order");
 
-                    b.Navigation("ProductName");
+                    b.Navigation("ProductE");
                 });
 #pragma warning restore 612, 618
         }

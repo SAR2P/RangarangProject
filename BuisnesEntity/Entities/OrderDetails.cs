@@ -8,15 +8,16 @@ namespace BuisnesEntityLayer.Entities
 
         public int Count { get; set; }
 
-        public float Price { get; set; }
+        public long Price { get; set; }
 
+        public long SumPrice { get; set; }
 
-        public int ProductId { get; set; }
+        public int ProductEId { get; set; }
         public ProductE ProductE { get; set; }
 
         public int OrderId { get; set; }
         public Order Order { get; set; }
 
-        public float SumPrice { get; set; }
+       
     }
 }

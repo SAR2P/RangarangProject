@@ -17,9 +17,9 @@ namespace BuisnesLogicLayer.view
 
         public int Count { get; set; }
 
-        public float OneProductPrice { get; set; }
+        public long OneProductPrice { get; set; }
 
-        public float Price { get; set; }
+        public long Price { get; set; }
 
     }
 }

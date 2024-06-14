@@ -14,7 +14,7 @@ namespace DataAccessLayer.Models
         RangarangDbContext ctx = new RangarangDbContext();
 
 
-        public void createProduct(Order Order)
+        public void createOrder(Order Order)
         {
             ctx.Orders.Add(Order);
             ctx.SaveChanges();
@@ -25,17 +25,19 @@ namespace DataAccessLayer.Models
             return ctx.Orders.ToList();
         }
 
-        public List<Order> ReadByProductName(int OrderNumber)
+        public Order GetProductById(int id)
         {
-            var q = ctx.Orders.Where(h => h.Number == OrderNumber);
+            var q = ctx.Orders.Where(h => h.Id == id);
 
-            return q.ToList();
+            return q.SingleOrDefault();
         }
 
-        public Order ReadByProductID(int id)
+        //
+
+        public int GetOrderIdByNumber(int Num)
         {
-            var query = ctx.Orders.FirstOrDefault(h => h.Id == id);
-            return query;
+            var query = ctx.Orders.FirstOrDefault(h => h.Number == Num);
+            return query.Id;
         }
 
 
