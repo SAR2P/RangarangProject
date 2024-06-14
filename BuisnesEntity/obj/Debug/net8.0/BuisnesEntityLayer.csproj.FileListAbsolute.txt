@@ -1,0 +1,11 @@
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesEntity\bin\Debug\net8.0\BuisnesEntityLayer.deps.json
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesEntity\bin\Debug\net8.0\BuisnesEntityLayer.dll
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesEntity\bin\Debug\net8.0\BuisnesEntityLayer.pdb
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesEntity\obj\Debug\net8.0\BuisnesEntityLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesEntity\obj\Debug\net8.0\BuisnesEntityLayer.AssemblyInfoInputs.cache
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesEntity\obj\Debug\net8.0\BuisnesEntityLayer.AssemblyInfo.cs
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesEntity\obj\Debug\net8.0\BuisnesEntityLayer.csproj.CoreCompileInputs.cache
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesEntity\obj\Debug\net8.0\BuisnesEntityLayer.dll
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesEntity\obj\Debug\net8.0\refint\BuisnesEntityLayer.dll
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesEntity\obj\Debug\net8.0\BuisnesEntityLayer.pdb
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesEntity\obj\Debug\net8.0\ref\BuisnesEntityLayer.dll

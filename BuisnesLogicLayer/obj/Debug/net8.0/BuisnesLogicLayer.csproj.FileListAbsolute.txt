@@ -1,0 +1,17 @@
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesLogicLayer\bin\Debug\net8.0\BuisnesLogicLayer.deps.json
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesLogicLayer\bin\Debug\net8.0\BuisnesLogicLayer.dll
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesLogicLayer\bin\Debug\net8.0\BuisnesLogicLayer.pdb
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesLogicLayer\obj\Debug\net8.0\BuisnesLogicLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesLogicLayer\obj\Debug\net8.0\BuisnesLogicLayer.AssemblyInfoInputs.cache
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesLogicLayer\obj\Debug\net8.0\BuisnesLogicLayer.AssemblyInfo.cs
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesLogicLayer\obj\Debug\net8.0\BuisnesLogicLayer.csproj.CoreCompileInputs.cache
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesLogicLayer\obj\Debug\net8.0\BuisnesLogicLayer.dll
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesLogicLayer\obj\Debug\net8.0\refint\BuisnesLogicLayer.dll
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesLogicLayer\obj\Debug\net8.0\BuisnesLogicLayer.pdb
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesLogicLayer\obj\Debug\net8.0\ref\BuisnesLogicLayer.dll
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesLogicLayer\obj\Debug\net8.0\BuisnesLogicLayer.csproj.AssemblyReference.cache
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesLogicLayer\bin\Debug\net8.0\BuisnesEntityLayer.dll
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesLogicLayer\bin\Debug\net8.0\DataAccessLayer.dll
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesLogicLayer\bin\Debug\net8.0\BuisnesEntityLayer.pdb
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesLogicLayer\bin\Debug\net8.0\DataAccessLayer.pdb
+C:\Users\DAIC\Desktop\RangaranTestProject\BuisnesLogicLayer\obj\Debug\net8.0\BuisnesLogicLayer.csproj.CopyComplete
