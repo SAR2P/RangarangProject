@@ -132,8 +132,8 @@ C:\Users\DAIC\Desktop\RangaranTestProject\UI\bin\Debug\net8.0-windows\zh-Hans\Mi
 C:\Users\DAIC\Desktop\RangaranTestProject\UI\bin\Debug\net8.0-windows\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\DAIC\Desktop\RangaranTestProject\UI\bin\Debug\net8.0-windows\BuisnesLogicLayer.dll
 C:\Users\DAIC\Desktop\RangaranTestProject\UI\bin\Debug\net8.0-windows\BuisnesLogicLayer.pdb
-C:\Users\DAIC\Desktop\RangaranTestProject\UI\obj\Debug\net8.0-windows\UI.Form1.resources
 C:\Users\DAIC\Desktop\RangaranTestProject\UI\obj\Debug\net8.0-windows\UI.csproj.GenerateResource.cache
 C:\Users\DAIC\Desktop\RangaranTestProject\UI\obj\Debug\net8.0-windows\UI.CreateOrder.resources
 C:\Users\DAIC\Desktop\RangaranTestProject\UI\obj\Debug\net8.0-windows\UI.CreateOrderDetails.resources
 C:\Users\DAIC\Desktop\RangaranTestProject\UI\obj\Debug\net8.0-windows\UI.sourcelink.json
+C:\Users\DAIC\Desktop\RangaranTestProject\UI\obj\Debug\net8.0-windows\UI.Orde.resources

@@ -57,12 +57,12 @@ namespace DataAccessLayer.Models
 
 
 
+       
 
 
-
-        public OrderDetails ReadByOrderDetailsID(int id)
+        public OrderDetails GetOrderDetailsByID(int id)
         {
-            var query = ctx.OrderDetails.FirstOrDefault(h => h.Id == id);
+            var query = ctx.OrderDetails.Where(h => h.Id == id ).SingleOrDefault();
             return query;
         }
 

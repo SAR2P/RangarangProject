@@ -23,9 +23,10 @@ namespace DataAccessLayer.Models
 
 
 
-        public OrderDetails GetOrderDetailsById(int id)
+        public OrderDetails GetOrderDetailsByID(int id)
         {
-            return OrderDetailsDAL.ReadByOrderDetailsID(id);
+            return OrderDetailsDAL.GetOrderDetailsByID(id);
+            
         }
 
 

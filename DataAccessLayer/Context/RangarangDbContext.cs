@@ -1,5 +1,6 @@
 ﻿using BuisnesEntityLayer.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,5 +20,20 @@ namespace DataAccessLayer.Context
         public DbSet<OrderDetails> OrderDetails { get; set; }
         public DbSet<Person> Person { get; set; }
         public DbSet<ProductE> Products { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+            modelBuilder.Entity<Order>().HasKey(x => x.Id);
+            modelBuilder.Entity<OrderDetails>().HasKey(x => x.Id);
+            modelBuilder.Entity<Person>().HasKey(x => x.Id);
+            modelBuilder.Entity<ProductE>().HasKey(x => x.Id);
+
+            modelBuilder.Entity<OrderDetails>().Ignore(x => x.EditState);
+           
+        }
+
+       
     }
 }

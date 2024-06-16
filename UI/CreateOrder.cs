@@ -47,7 +47,7 @@ namespace UI
                     {
                         PersonId = _Person.Id,
                         Date = dateTimePicker1.Value,
-                        Number = newNum,
+                        Number = newNum + 1,
 
                     };
 
@@ -67,7 +67,7 @@ namespace UI
                             detailsBLL.createOrderDetails(details);
                         }
                     }
-
+                     
                     MessageBox.Show("success");
                     this.Close();
                 }

@@ -1,10 +1,11 @@
 ﻿
 
+using BuisnesEntityLayer.baseEntity;
+
 namespace BuisnesEntityLayer.Entities
 {
-    public class OrderDetails
+    public class OrderDetails : BaseEntities
     {
-        public int Id { get; set; }
 
         public int Count { get; set; }
 
@@ -18,6 +19,7 @@ namespace BuisnesEntityLayer.Entities
         public int OrderId { get; set; }
         public Order Order { get; set; }
 
-       
+        public bool EditState { get; set; } = false;
+
     }
 }

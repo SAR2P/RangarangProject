@@ -561,6 +561,9 @@
         }
       },
       "BuisnesEntityLayer/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore.Relational": "8.0.6"
+        },
         "runtime": {
           "BuisnesEntityLayer.dll": {}
         }

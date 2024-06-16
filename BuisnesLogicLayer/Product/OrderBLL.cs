@@ -40,12 +40,16 @@ namespace BuisnesLogicLayer.Product
 
         }
 
-        public int GetNewNumberForOrder()
+        public int GetNewNumberForOrder()//going to delete
         {
           
                 var counting = GetAll().Count();
                 return counting + 1;
-           
+        }
+
+        public int GetMaxNumberProperty()
+        {
+            return pro.GetMaxNumberProperty();
         }
 
         public List<Order> GetAll()

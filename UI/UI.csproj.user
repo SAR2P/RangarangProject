@@ -7,7 +7,7 @@
     <Compile Update="CreateOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="Form1.cs">
+    <Compile Update="OrderApp.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
