@@ -86,6 +86,7 @@
             txtTotalPrice.Name = "txtTotalPrice";
             txtTotalPrice.Size = new Size(182, 31);
             txtTotalPrice.TabIndex = 5;
+            txtTotalPrice.TextChanged += txtTotalPrice_TextChanged;
             // 
             // lblPName
             // 

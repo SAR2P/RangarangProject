@@ -13,7 +13,7 @@ namespace RangarangTest_UI
         public OrderAppForm()
         {
             InitializeComponent();
-
+            OrderForSendToUpdate = new Order();
         }
 
         OrderBLL OrderBLL = new OrderBLL();
@@ -76,12 +76,26 @@ namespace RangarangTest_UI
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            using (var form = new Create_Edit_Order(OrderForSendToUpdate, true))
+            try
             {
-                form.ShowDialog();
-                SetAllRelatedsToDataGrid();
+                if (OrderForSendToUpdate.Id <= 0)
+                {
+                    MessageBox.Show("please first select a Order");
+                    return;
+                }
+                using (var form = new Create_Edit_Order(OrderForSendToUpdate, true))
+                {
+                    form.ShowDialog();
+
+                }
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("update Faild");
             }
 
+            SetAllRelatedsToDataGrid();
         }
 
         private void DG_RelatedOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -98,16 +112,32 @@ namespace RangarangTest_UI
 
         }
 
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            if (ComboPersonBox.SelectedItem == null)
+            {
+                MessageBox.Show("please first select a person");
+                return;
+            }
+            SetRelatedsToDataGridBySearchPanel();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
 
         //private methods
 
         private void SetAllRelatedsToDataGrid()
         {
             List<GetRelatedOrders> relatedRes = OrderBLL.GetListOffRelatedsToOrder();
-
+            
 
             DG_RelatedOrders.DataSource = null;
             DG_RelatedOrders.DataSource = relatedRes;
+            
+
         }
 
         private void SetRelatedsToDataGridBySearchPanel()
@@ -118,8 +148,6 @@ namespace RangarangTest_UI
                 List<GetRelatedOrders> getRelateds = OrderBLL.GetListOffRelatedsToOrder();
 
                 List<GetRelatedOrders> relatedresu = new List<GetRelatedOrders>();
-                MessageBox.Show(ComboPersonBox.SelectedItem.ToString());
-
                 foreach (var relate in getRelateds)
                 {
                     if (ComboPersonBox.SelectedItem.ToString() == relate.PersonName && relate.OrderDate.Date >= StartdateTimePicker.Value && relate.OrderDate.Date <= EndTimePicker.Value)
@@ -145,19 +173,5 @@ namespace RangarangTest_UI
 
         }
 
-        private void ComboPersonBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnSearch_Click(object sender, EventArgs e)
-        {
-            SetRelatedsToDataGridBySearchPanel();
-        }
-
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
     }
 }

@@ -145,7 +145,7 @@ namespace RangarangTest_UI
             {
                 if (item.EditState == true)
                 {
-                   if (item.Id > 0)
+                    if (item.Id > 0)
                         NewOrderDFromForm.Id = item.Id;
 
                     orderDetailsList.Remove(item);
@@ -165,6 +165,11 @@ namespace RangarangTest_UI
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void txtTotalPrice_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

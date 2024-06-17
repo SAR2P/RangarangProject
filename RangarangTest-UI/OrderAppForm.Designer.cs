@@ -188,7 +188,6 @@
             ComboPersonBox.Name = "ComboPersonBox";
             ComboPersonBox.Size = new Size(182, 33);
             ComboPersonBox.TabIndex = 0;
-            ComboPersonBox.SelectedIndexChanged += ComboPersonBox_SelectedIndexChanged;
             // 
             // panelDataGrid
             // 

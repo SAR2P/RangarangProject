@@ -23,12 +23,12 @@ namespace DataAccessLayer.Models
             ctx.SaveChanges();
         }
 
-        public List<Order> GetOrdersAsync()
+        public List<Order> GetOrders()
         {
             return  ctx.Orders.ToList();
         }
 
-        public Order GetProductById(int id)
+        public Order GetOrdersById(int id)
         {
             var q = ctx.Orders.Where(h => h.Id == id);
 
@@ -40,7 +40,7 @@ namespace DataAccessLayer.Models
         {
             List<GetRelatedOrders> getRelatedOrders = new List<GetRelatedOrders>();
 
-            var orders =  GetOrdersAsync();
+            var orders =  GetOrders();
 
             foreach (var item in orders)
             {
@@ -59,11 +59,11 @@ namespace DataAccessLayer.Models
                     TotalPrice = SumOfOrdersPrice,
                     OrderDate = item.Date
                 });
-               
-
+              
+                
             }
-
             return getRelatedOrders;
+           
         }
 
         //

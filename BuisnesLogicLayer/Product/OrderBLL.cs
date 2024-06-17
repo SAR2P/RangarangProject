@@ -65,7 +65,7 @@ namespace BuisnesLogicLayer.Product
 
         public List<Order> GetAll()
         {
-            var result =  pro.GetOrdersAsync();
+            var result =  pro.GetOrders();
             return result;
         }
 
@@ -74,11 +74,7 @@ namespace BuisnesLogicLayer.Product
             return pro.GetListOffRelatedsToOrder();
         }
 
-        public Order GetProductById(int id)
-        {
-            var result = pro.GetProductById(id);
-            return result;
-        }
+        
 
         public int getOrederIdByNumber(int id)
         {
@@ -88,7 +84,7 @@ namespace BuisnesLogicLayer.Product
 
         public Order GetOrderById(int id)
         {
-            return pro.GetProductById(id);
+            return pro.GetOrdersById(id);
         }
 
         public bool DeleteOrder(int id)

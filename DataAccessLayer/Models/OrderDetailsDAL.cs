@@ -50,13 +50,13 @@ namespace DataAccessLayer.Models
                 });
             }
             return ki;
-         }
+        }
 
 
 
 
-      
-         public List<OrderDetails> GetOrderDetailsByOrderId(int id)
+
+        public List<OrderDetails> GetOrderDetailsByOrderId(int id)
         {
             var query = ctx.OrderDetails.Where(o => o.OrderId == id).ToList();
             return query;
@@ -65,7 +65,7 @@ namespace DataAccessLayer.Models
 
         public OrderDetails GetOrderDetailsByID(int id)
         {
-            var query = ctx.OrderDetails.Where(h => h.Id == id ).SingleOrDefault();
+            var query = ctx.OrderDetails.Where(h => h.Id == id).SingleOrDefault();
             return query;
         }
 
@@ -92,7 +92,7 @@ namespace DataAccessLayer.Models
                 NOrderDetails.SumPrice = NewOrderDetails.SumPrice;
                 NOrderDetails.ProductEId = NewOrderDetails.ProductEId;
                 NOrderDetails.OrderId = NewOrderDetails.OrderId;
-               
+
                 ctx.SaveChanges();
 
             }
@@ -109,5 +109,12 @@ namespace DataAccessLayer.Models
 
             }
         }
+
+
     }
+
+
+
+
 }
+

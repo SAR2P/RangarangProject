@@ -19,18 +19,18 @@ namespace RangarangTest_UI
     {
 
         private List<OrderDetails> _OrderDetailsList;
-
+        private bool EditOrderDetailsForButtons;
         public Create_Edit_Order()
         {
             InitializeComponent();
             _OrderDetailsList = new List<OrderDetails>();
             OrdersEditState = false;
-            
+            EditOrderDetailsForButtons = false;
         }
 
-        private Order _Order; 
+        private Order _Order;
         private bool OrdersEditState = false;
-        public Create_Edit_Order(Order order,bool IsEdited)
+        public Create_Edit_Order(Order order, bool IsEdited)
         {
             InitializeComponent();
             _Order = order;
@@ -53,14 +53,14 @@ namespace RangarangTest_UI
             }
             if (OrdersEditState)
             {
-               var perRes = PersonBLL.GetPersonById(_Order.PersonId);
+                var perRes = PersonBLL.GetPersonById(_Order.PersonId);
 
                 customerComboBox.SelectedItem = perRes.Name;
                 createOrder_dateTimePicker.Value = _Order.Date;
                 _OrderDetailsList = orderDetailBLL.GetOrderDetailsByOrderId(_Order.Id);
 
             }
-            
+
             setDataG(_OrderDetailsList);
 
         }
@@ -83,7 +83,7 @@ namespace RangarangTest_UI
 
         private void OD_DataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+
 
             var selectedItem = OD_DataGrid.SelectedRows[0].DataBoundItem as FormOrderDataGridViewModel;
 
@@ -94,7 +94,7 @@ namespace RangarangTest_UI
                 if (selectedItem.ProductEId == item.ProductEId)
                 {
                     item.EditState = true;
-                    MessageBox.Show(item.ProductEId.ToString() + " is selected fro update");
+                    EditOrderDetailsForButtons = true;
                 }
             }
 
@@ -102,23 +102,41 @@ namespace RangarangTest_UI
 
         private void btnEditOD_Click(object sender, EventArgs e)
         {
+            if (EditOrderDetailsForButtons == false)
+            {
+                MessageBox.Show("Please first select a order");
+                return;
+            }
             using (var form = new Create_Edit_OrderDetails(_OrderDetailsList))
             {
                 form.ShowDialog();
                 setDataG(_OrderDetailsList);
+                EditOrderDetailsForButtons = false;
             }
         }
 
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
+
+            if (customerComboBox.SelectedItem == null)
+            {
+                MessageBox.Show("please first choose a customer");
+                return;
+            }
+            if (_OrderDetailsList.Count <= 0)
+            {
+                MessageBox.Show("Please Register The Order With OrderDetails");
+                return;
+            }
+
             var personId = PersonBLL.getpersonIdByName(customerComboBox.SelectedItem.ToString());
             if (!OrdersEditState)
             {
                 try
                 {
                     var newnum = OrderBLL.GetMaxNumberProperty();
-                    
+
 
                     var order = new Order()
                     {
@@ -147,8 +165,8 @@ namespace RangarangTest_UI
                     }
 
                     MessageBox.Show("created successfuly");
-                   
-                    
+
+
                 }
                 catch (Exception)
                 {
@@ -157,7 +175,7 @@ namespace RangarangTest_UI
             }
             else
             {
-               bool check = OrderBLL.CheckOrderExist(_Order.Id);
+                bool check = OrderBLL.CheckOrderExist(_Order.Id);
 
                 if (check)
                 {//update
@@ -168,9 +186,8 @@ namespace RangarangTest_UI
                         PersonId = personId,
                         Number = _Order.Number
                     };
-                    if (OrderBLL.UpdateProduct(_Order.Id,ord) == true)
+                    if (OrderBLL.UpdateProduct(_Order.Id, ord) == true)
                     {
-                        MessageBox.Show($"order by ID {_Order.Id} updated");
                         foreach (var item in _OrderDetailsList)
                         {
                             if (orderDetailBLL.checkIfOrderDetailsExist(item.Id))
@@ -179,12 +196,11 @@ namespace RangarangTest_UI
                                 {
                                     OrderId = _Order.Id,
                                     Price = item.Price,
-                                    SumPrice=item.SumPrice,
+                                    SumPrice = item.SumPrice,
                                     Count = item.Count,
                                     ProductEId = item.ProductEId,
                                     EditState = false
                                 });
-                                MessageBox.Show($" sumprice {item.SumPrice}  Succesfuly");
                             }
                             else
                             {
@@ -199,16 +215,14 @@ namespace RangarangTest_UI
                                         SumPrice = item.SumPrice,
                                         EditState = false
                                     });
-                                    MessageBox.Show($"new order details by id  created");
-
                                 }
                                 catch (Exception)
                                 {
                                     MessageBox.Show("error ocurd whil creating new orderDetails");
                                 }
-                               
+
                             }
-                           
+
                         }
                     }
 
@@ -216,7 +230,7 @@ namespace RangarangTest_UI
                 }
 
             }
-           this.Close();
+            this.Close();
         }
 
         private void Cancel_Click(object sender, EventArgs e)
@@ -226,6 +240,12 @@ namespace RangarangTest_UI
 
         private void btnDeleteOD_Click(object sender, EventArgs e)
         {
+            if (EditOrderDetailsForButtons == false)
+            {
+                MessageBox.Show("please first select a orderDetails");
+                return;
+            }
+
             foreach (var item in _OrderDetailsList)
             {
                 if (item.EditState == true)
@@ -237,6 +257,7 @@ namespace RangarangTest_UI
                         MessageBox.Show("just deleted from list");
                         SetAllOrderDetailsEditStatesFalse();
                         setDataG(_OrderDetailsList);
+                        EditOrderDetailsForButtons = false;
                         return;
                     }
                     else
@@ -246,6 +267,7 @@ namespace RangarangTest_UI
                         MessageBox.Show("deleted from database and list");
                         SetAllOrderDetailsEditStatesFalse();
                         setDataG(_OrderDetailsList);
+                        EditOrderDetailsForButtons = false;
                         return;
                     }
                 }
@@ -285,5 +307,6 @@ namespace RangarangTest_UI
             }
         }
 
+      
     }
 }
