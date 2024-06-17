@@ -1,5 +1,7 @@
 ﻿using BuisnesEntityLayer.Entities;
+using BuisnesEntityLayer.ViewModel;
 using DataAccessLayer.Context;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -21,9 +23,9 @@ namespace DataAccessLayer.Models
             ctx.SaveChanges();
         }
 
-        public List<Order> ReadOrders()
+        public List<Order> GetOrdersAsync()
         {
-            return ctx.Orders.ToList();
+            return  ctx.Orders.ToList();
         }
 
         public Order GetProductById(int id)
@@ -33,12 +35,59 @@ namespace DataAccessLayer.Models
             return q.SingleOrDefault();
         }
 
+
+        public  List<GetRelatedOrders> GetListOffRelatedsToOrder()
+        {
+            List<GetRelatedOrders> getRelatedOrders = new List<GetRelatedOrders>();
+
+            var orders =  GetOrdersAsync();
+
+            foreach (var item in orders)
+            {
+              
+                var perName =  ctx.Person.Where(p => p.Id == item.PersonId).FirstOrDefault();
+                var ordersRealatedToOrder = ctx.OrderDetails.Where(o => o.OrderId ==  item.Id).ToList();
+                long SumOfOrdersPrice = 0;
+                foreach (var i in ordersRealatedToOrder)
+                {
+                    SumOfOrdersPrice += i.SumPrice;
+                }
+                getRelatedOrders.Add(new GetRelatedOrders
+                {
+                    OrderNumber = item.Number,
+                    PersonName = perName.Name,
+                    TotalPrice = SumOfOrdersPrice,
+                    OrderDate = item.Date
+                });
+               
+
+            }
+
+            return getRelatedOrders;
+        }
+
         //
+
+        public bool CheckOrderExist(int id)
+        {
+            var order = ctx.Orders.Where(o => o.Id == id).ToList();
+            if (order.Count <= 0)
+            {
+                return false;
+            }
+            return true;
+        }
 
         public int GetOrderIdByNumber(int Num)
         {
             var query = ctx.Orders.FirstOrDefault(h => h.Number == Num);
             return query.Id;
+        }
+
+        public Order getOrderObjByNumber(int Num)
+        {
+            var query = ctx.Orders.Where(o => o.Number == Num).SingleOrDefault();
+            return query;
         }
 
 
@@ -75,10 +124,17 @@ namespace DataAccessLayer.Models
 
         public int GetMaxNumberProperty()
         {
-
+            try
+            {
                 int maxNum = ctx.Orders.Max(h => (int)h.Number);
-                    
-            return maxNum + 1;
+
+                return maxNum + 1;
+            }
+            catch (Exception)
+            {
+                return 1;
+            }
+           
             
            
         }

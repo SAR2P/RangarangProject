@@ -24,6 +24,18 @@ namespace RangarangTest_UI
         {
             InitializeComponent();
             _OrderDetailsList = new List<OrderDetails>();
+            OrdersEditState = false;
+            
+        }
+
+        private Order _Order; 
+        private bool OrdersEditState = false;
+        public Create_Edit_Order(Order order,bool IsEdited)
+        {
+            InitializeComponent();
+            _Order = order;
+            OrdersEditState = IsEdited;
+            _OrderDetailsList = new List<OrderDetails>();
         }
 
 
@@ -39,7 +51,16 @@ namespace RangarangTest_UI
             {
                 customerComboBox.Items.Add(item.Name);
             }
+            if (OrdersEditState)
+            {
+               var perRes = PersonBLL.GetPersonById(_Order.PersonId);
 
+                customerComboBox.SelectedItem = perRes.Name;
+                createOrder_dateTimePicker.Value = _Order.Date;
+                _OrderDetailsList = orderDetailBLL.GetOrderDetailsByOrderId(_Order.Id);
+
+            }
+            
             setDataG(_OrderDetailsList);
 
         }
@@ -91,38 +112,111 @@ namespace RangarangTest_UI
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-
-            var newnum = OrderBLL.GetMaxNumberProperty();
             var personId = PersonBLL.getpersonIdByName(customerComboBox.SelectedItem.ToString());
-
-            var order = new Order()
+            if (!OrdersEditState)
             {
-
-                Number = newnum,
-                PersonId = personId,
-                Date = createOrder_dateTimePicker.Value,
-
-            };
-
-            if (OrderBLL.CreateOrder(order))
-            {
-                var getOrderIdByNumber = OrderBLL.getOrederIdByNumber(order.Number);
-                foreach (var item in _OrderDetailsList)
+                try
                 {
-                    OrderDetails details = new OrderDetails()
+                    var newnum = OrderBLL.GetMaxNumberProperty();
+                    
+
+                    var order = new Order()
                     {
-                        ProductEId = item.ProductEId,
-                        Count = item.Count,
-                        Price = item.Price,
-                        OrderId = getOrderIdByNumber,
-                        SumPrice = item.SumPrice
+
+                        Number = newnum,
+                        PersonId = personId,
+                        Date = createOrder_dateTimePicker.Value,
+
                     };
-                    orderDetailBLL.createOrderDetails(details);
+
+                    if (OrderBLL.CreateOrder(order))
+                    {
+                        var getOrderIdByNumber = OrderBLL.getOrederIdByNumber(order.Number);
+                        foreach (var item in _OrderDetailsList)
+                        {
+                            OrderDetails details = new OrderDetails()
+                            {
+                                ProductEId = item.ProductEId,
+                                Count = item.Count,
+                                Price = item.Price,
+                                OrderId = getOrderIdByNumber,
+                                SumPrice = item.SumPrice
+                            };
+                            orderDetailBLL.createOrderDetails(details);
+                        }
+                    }
+
+                    MessageBox.Show("created successfuly");
+                   
+                    
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("faild creating");
                 }
             }
+            else
+            {
+               bool check = OrderBLL.CheckOrderExist(_Order.Id);
 
-            MessageBox.Show("success");
-            this.Close();
+                if (check)
+                {//update
+
+                    var ord = new Order()
+                    {
+                        Date = createOrder_dateTimePicker.Value,
+                        PersonId = personId,
+                        Number = _Order.Number
+                    };
+                    if (OrderBLL.UpdateProduct(_Order.Id,ord) == true)
+                    {
+                        MessageBox.Show($"order by ID {_Order.Id} updated");
+                        foreach (var item in _OrderDetailsList)
+                        {
+                            if (orderDetailBLL.checkIfOrderDetailsExist(item.Id))
+                            {
+                                orderDetailBLL.UpdateOrderDetails(item.Id, new OrderDetails
+                                {
+                                    OrderId = _Order.Id,
+                                    Price = item.Price,
+                                    SumPrice=item.SumPrice,
+                                    Count = item.Count,
+                                    ProductEId = item.ProductEId,
+                                    EditState = false
+                                });
+                                MessageBox.Show($" sumprice {item.SumPrice}  Succesfuly");
+                            }
+                            else
+                            {
+                                try
+                                {
+                                    orderDetailBLL.createOrderDetails(new OrderDetails
+                                    {
+                                        OrderId = _Order.Id,
+                                        ProductEId = item.ProductEId,
+                                        Count = item.Count,
+                                        Price = item.Price,
+                                        SumPrice = item.SumPrice,
+                                        EditState = false
+                                    });
+                                    MessageBox.Show($"new order details by id  created");
+
+                                }
+                                catch (Exception)
+                                {
+                                    MessageBox.Show("error ocurd whil creating new orderDetails");
+                                }
+                               
+                            }
+                           
+                        }
+                    }
+
+                    OrdersEditState = false;
+                }
+
+            }
+           this.Close();
         }
 
         private void Cancel_Click(object sender, EventArgs e)
@@ -136,8 +230,8 @@ namespace RangarangTest_UI
             {
                 if (item.EditState == true)
                 {//firs we check if it`s in database we delete it from there and then we deleted from list
-                    var checkexistInDB = orderDetailBLL.GetOrderDetailsByID(item.OrderId);
-                    if (checkexistInDB == null)
+                    var checkexistInDB = orderDetailBLL.checkIfOrderDetailsExist(item.Id);
+                    if (checkexistInDB == false)
                     {// delete just from list
                         _OrderDetailsList.Remove(item);
                         MessageBox.Show("just deleted from list");

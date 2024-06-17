@@ -20,6 +20,7 @@ namespace DataAccessLayer.Models
             return ctx.Person.ToList();
         }
 
+     
         public List<Person> SearchPerson(string persontext)
         {
             //var query = ctx.Person.Where(x => x.Name.Contains(persontext)).ToList();

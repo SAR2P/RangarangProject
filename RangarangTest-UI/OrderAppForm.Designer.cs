@@ -43,11 +43,11 @@
             StartdateTimePicker = new DateTimePicker();
             ComboPersonBox = new ComboBox();
             panelDataGrid = new Panel();
-            dataGridView1 = new DataGridView();
+            DG_RelatedOrders = new DataGridView();
             PanelBtns.SuspendLayout();
             panelSearch.SuspendLayout();
             panelDataGrid.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)DG_RelatedOrders).BeginInit();
             SuspendLayout();
             // 
             // PanelBtns
@@ -61,7 +61,7 @@
             PanelBtns.Dock = DockStyle.Top;
             PanelBtns.Location = new Point(0, 0);
             PanelBtns.Name = "PanelBtns";
-            PanelBtns.Size = new Size(1252, 222);
+            PanelBtns.Size = new Size(1256, 222);
             PanelBtns.TabIndex = 0;
             // 
             // btnExit
@@ -90,6 +90,7 @@
             btnDelete.TabIndex = 5;
             btnDelete.Text = "حذف";
             btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.Click += btnDelete_Click;
             // 
             // btnEdit
             // 
@@ -99,6 +100,7 @@
             btnEdit.TabIndex = 4;
             btnEdit.Text = "ویرایش";
             btnEdit.UseVisualStyleBackColor = true;
+            btnEdit.Click += btnEdit_Click;
             // 
             // btnCreate
             // 
@@ -122,13 +124,13 @@
             panelSearch.Dock = DockStyle.Bottom;
             panelSearch.Location = new Point(0, 80);
             panelSearch.Name = "panelSearch";
-            panelSearch.Size = new Size(1252, 142);
+            panelSearch.Size = new Size(1256, 142);
             panelSearch.TabIndex = 2;
             // 
             // lblsearch
             // 
             lblsearch.AutoSize = true;
-            lblsearch.Location = new Point(1186, 17);
+            lblsearch.Location = new Point(1148, 19);
             lblsearch.Name = "lblsearch";
             lblsearch.Size = new Size(64, 25);
             lblsearch.TabIndex = 6;
@@ -187,37 +189,40 @@
             // 
             // panelDataGrid
             // 
-            panelDataGrid.Controls.Add(dataGridView1);
+            panelDataGrid.Controls.Add(DG_RelatedOrders);
             panelDataGrid.Dock = DockStyle.Fill;
             panelDataGrid.Location = new Point(0, 222);
             panelDataGrid.Name = "panelDataGrid";
-            panelDataGrid.Size = new Size(1252, 378);
+            panelDataGrid.Size = new Size(1256, 378);
             panelDataGrid.TabIndex = 1;
             // 
-            // dataGridView1
+            // DG_RelatedOrders
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Dock = DockStyle.Fill;
-            dataGridView1.Location = new Point(0, 0);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.Size = new Size(1252, 378);
-            dataGridView1.TabIndex = 0;
+            DG_RelatedOrders.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            DG_RelatedOrders.Dock = DockStyle.Fill;
+            DG_RelatedOrders.Location = new Point(0, 0);
+            DG_RelatedOrders.Name = "DG_RelatedOrders";
+            DG_RelatedOrders.RowHeadersWidth = 62;
+            DG_RelatedOrders.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            DG_RelatedOrders.Size = new Size(1256, 378);
+            DG_RelatedOrders.TabIndex = 0;
+            DG_RelatedOrders.CellContentClick += DG_RelatedOrders_CellContentClick;
             // 
             // OrderAppForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1252, 600);
+            ClientSize = new Size(1256, 600);
             Controls.Add(panelDataGrid);
             Controls.Add(PanelBtns);
             Name = "OrderAppForm";
             Text = "OrderApp";
+            Load += OrderAppForm_Load;
             PanelBtns.ResumeLayout(false);
             panelSearch.ResumeLayout(false);
             panelSearch.PerformLayout();
             panelDataGrid.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)DG_RelatedOrders).EndInit();
             ResumeLayout(false);
         }
 
@@ -230,7 +235,7 @@
         private DateTimePicker StartdateTimePicker;
         private ComboBox ComboPersonBox;
         private Panel panelDataGrid;
-        private DataGridView dataGridView1;
+        private DataGridView DG_RelatedOrders;
         private Button btnExit;
         private Button btnSearch;
         private Button btnDelete;

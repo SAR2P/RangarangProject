@@ -1,4 +1,5 @@
 ﻿using BuisnesEntityLayer.Entities;
+using BuisnesEntityLayer.ViewModel;
 using DataAccessLayer.Models;
 
 
@@ -23,6 +24,16 @@ namespace BuisnesLogicLayer.Product
            
         }
 
+        public bool CheckOrderExist(int orderId) 
+        {
+            return pro.CheckOrderExist(orderId);
+        }
+
+        public Order GetOrderObjByNumber(int number)
+        {
+            return pro.getOrderObjByNumber(number);
+        }
+
         public bool UpdateProduct(int id,Order order) 
         {
             try
@@ -43,7 +54,7 @@ namespace BuisnesLogicLayer.Product
         public int GetNewNumberForOrder()//going to delete
         {
           
-                var counting = GetAll().Count();
+                var counting =  GetAll().Count();
                 return counting + 1;
         }
 
@@ -54,8 +65,13 @@ namespace BuisnesLogicLayer.Product
 
         public List<Order> GetAll()
         {
-            var result = pro.ReadOrders();
+            var result =  pro.GetOrdersAsync();
             return result;
+        }
+
+        public List<GetRelatedOrders> GetListOffRelatedsToOrder()
+        {
+            return pro.GetListOffRelatedsToOrder();
         }
 
         public Order GetProductById(int id)

@@ -20,8 +20,16 @@ namespace DataAccessLayer.Models
 
         }
 
+        public bool checkIfOrderDetailsExist(int OrderDetailsId)
+        {
+            return OrderDetailsDAL.CheckIfOrderDetailsExist(OrderDetailsId);
+        }
 
 
+        public List<OrderDetails> GetOrderDetailsByOrderId(int id)
+        {
+           return OrderDetailsDAL.GetOrderDetailsByOrderId(id);
+        }
 
         public OrderDetails GetOrderDetailsByID(int id)
         {

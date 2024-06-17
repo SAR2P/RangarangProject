@@ -59,8 +59,8 @@ namespace RangarangTest_UI
                             {
                                 productComboBox.SelectedItem = product.Name;
                                 txtPPrice.Text = item.Price.ToString();
-                                txtTotalPrice.Text = item.SumPrice.ToString();
                                 productNumericBox.Value = item.Count;
+                                txtTotalPrice.Text = item.SumPrice.ToString();
                             }
                         }
 
@@ -72,11 +72,6 @@ namespace RangarangTest_UI
             {
                 MessageBox.Show("error ocurd whil fetching data");
             }
-
-
-
-
-
 
 
         }
@@ -150,6 +145,8 @@ namespace RangarangTest_UI
             {
                 if (item.EditState == true)
                 {
+                   if (item.Id > 0)
+                        NewOrderDFromForm.Id = item.Id;
 
                     orderDetailsList.Remove(item);
                     orderDetailsList.Add(NewOrderDFromForm);
