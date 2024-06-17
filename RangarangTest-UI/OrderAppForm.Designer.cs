@@ -72,6 +72,7 @@
             btnExit.TabIndex = 7;
             btnExit.Text = "خروج";
             btnExit.UseVisualStyleBackColor = true;
+            btnExit.Click += btnExit_Click;
             // 
             // btnSearch
             // 
@@ -81,6 +82,7 @@
             btnSearch.TabIndex = 6;
             btnSearch.Text = "جستجو";
             btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.Click += btnSearch_Click;
             // 
             // btnDelete
             // 
@@ -186,6 +188,7 @@
             ComboPersonBox.Name = "ComboPersonBox";
             ComboPersonBox.Size = new Size(182, 33);
             ComboPersonBox.TabIndex = 0;
+            ComboPersonBox.SelectedIndexChanged += ComboPersonBox_SelectedIndexChanged;
             // 
             // panelDataGrid
             // 

@@ -14,6 +14,7 @@ namespace BuisnesEntityLayer.Entities
     {
         
         public int Number { get; set; }
+        [Column(TypeName ="date")]
         public DateTime Date { get; set; }
 
         

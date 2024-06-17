@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RangarangTest-UI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+453b5f23da6c7bd320ef979fa5b99dc86d100e98")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d9640f29307fbeae622a895bffcd9e23c5178671")]
 [assembly: System.Reflection.AssemblyProductAttribute("RangarangTest-UI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RangarangTest-UI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
