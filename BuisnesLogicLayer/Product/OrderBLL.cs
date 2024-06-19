@@ -24,6 +24,11 @@ namespace BuisnesLogicLayer.Product
            
         }
 
+        public GetRelatedOrders GetOneRelatedOrderByOrderId(int orderId) 
+        {
+        return pro.GetOneOffRelatedsToOrderByOrderId(orderId);
+        }
+
         public bool CheckOrderExist(int orderId) 
         {
             return pro.CheckOrderExist(orderId);

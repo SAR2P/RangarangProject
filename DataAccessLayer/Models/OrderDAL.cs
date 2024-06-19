@@ -66,6 +66,30 @@ namespace DataAccessLayer.Models
            
         }
 
+        public GetRelatedOrders GetOneOffRelatedsToOrderByOrderId(int orderid)
+        {
+            GetRelatedOrders getRelatedOrder = new GetRelatedOrders();
+
+            var order = GetOrdersById(orderid);
+
+                var perName = ctx.Person.Where(p => p.Id == order.PersonId).FirstOrDefault();
+                var ordersRealatedToOrder = ctx.OrderDetails.Where(o => o.OrderId == order.Id).ToList();
+                long SumOfOrdersPrice = 0;
+                foreach (var i in ordersRealatedToOrder)
+                {
+                    SumOfOrdersPrice += i.SumPrice;
+                }
+                getRelatedOrder =new GetRelatedOrders
+                {
+                    OrderNumber = order.Number,
+                    PersonName = perName.Name,
+                    TotalPrice = SumOfOrdersPrice,
+                    OrderDate = order.Date
+                };
+
+            return getRelatedOrder;
+        }
+
         //
 
         public bool CheckOrderExist(int id)
@@ -99,10 +123,12 @@ namespace DataAccessLayer.Models
             {
                 Order NOrder = new Order();
 
+                
                 NOrder = query.Single();
                 NOrder.Number = NewOrder.Number;
                 NOrder.Date = NewOrder.Date;
                 NOrder.PersonId = NewOrder.PersonId;
+                
                 ctx.SaveChanges();
 
             }

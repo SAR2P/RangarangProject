@@ -9,9 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuisnesLogicLayer", "Buisne
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuisnesEntityLayer", "BuisnesEntity\BuisnesEntityLayer.csproj", "{4ED92EED-5816-4394-BD77-00ED9FB0CE19}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI", "UI\UI.csproj", "{C135C1AC-97EE-46E8-B830-40B3B349A56F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RangarangTest-UI", "RangarangTest-UI\RangarangTest-UI.csproj", "{1A814809-0BC7-46E7-8A7B-838407B8B921}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RangarangTest-UI", "RangarangTest-UI\RangarangTest-UI.csproj", "{1A814809-0BC7-46E7-8A7B-838407B8B921}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,10 +29,6 @@ Global
 		{4ED92EED-5816-4394-BD77-00ED9FB0CE19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4ED92EED-5816-4394-BD77-00ED9FB0CE19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4ED92EED-5816-4394-BD77-00ED9FB0CE19}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C135C1AC-97EE-46E8-B830-40B3B349A56F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C135C1AC-97EE-46E8-B830-40B3B349A56F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C135C1AC-97EE-46E8-B830-40B3B349A56F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C135C1AC-97EE-46E8-B830-40B3B349A56F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1A814809-0BC7-46E7-8A7B-838407B8B921}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1A814809-0BC7-46E7-8A7B-838407B8B921}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A814809-0BC7-46E7-8A7B-838407B8B921}.Release|Any CPU.ActiveCfg = Release|Any CPU

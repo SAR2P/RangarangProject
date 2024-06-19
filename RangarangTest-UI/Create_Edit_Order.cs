@@ -165,7 +165,7 @@ namespace RangarangTest_UI
                     }
 
                     MessageBox.Show("created successfuly");
-
+                    
 
                 }
                 catch (Exception)
@@ -192,6 +192,18 @@ namespace RangarangTest_UI
                         {
                             if (orderDetailBLL.checkIfOrderDetailsExist(item.Id))
                             {
+                                //orderDetailBLL.deleteOrderDetails(item.Id);
+                                //orderDetailBLL.createOrderDetails(new OrderDetails
+                                //{
+                                //    OrderId = _Order.Id,
+                                //    Price = item.Price,
+                                //    SumPrice = item.SumPrice,
+                                //    Count = item.Count,
+                                //    ProductEId = item.ProductEId,
+                                //    EditState = false
+                                //});
+                                //MessageBox.Show("order details Updated");
+
                                 orderDetailBLL.UpdateOrderDetails(item.Id, new OrderDetails
                                 {
                                     OrderId = _Order.Id,
@@ -224,6 +236,7 @@ namespace RangarangTest_UI
                             }
 
                         }
+                        
                     }
 
                     OrdersEditState = false;
@@ -231,13 +244,14 @@ namespace RangarangTest_UI
 
             }
             this.Close();
+            
         }
 
         private void Cancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
+        
         private void btnDeleteOD_Click(object sender, EventArgs e)
         {
             if (EditOrderDetailsForButtons == false)

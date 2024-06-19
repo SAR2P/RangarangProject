@@ -10,10 +10,12 @@ namespace RangarangTest_UI
     {
         private Order OrderForSendToUpdate;
 
+     
         public OrderAppForm()
         {
             InitializeComponent();
             OrderForSendToUpdate = new Order();
+         
         }
 
         OrderBLL OrderBLL = new OrderBLL();
@@ -86,16 +88,15 @@ namespace RangarangTest_UI
                 using (var form = new Create_Edit_Order(OrderForSendToUpdate, true))
                 {
                     form.ShowDialog();
-
+                    Application.Restart();
+                    SetAllRelatedsToDataGrid();
+                    
                 }
-
             }
             catch (Exception)
             {
                 MessageBox.Show("update Faild");
             }
-
-            SetAllRelatedsToDataGrid();
         }
 
         private void DG_RelatedOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -103,13 +104,8 @@ namespace RangarangTest_UI
 
             var selectedItem = DG_RelatedOrders.SelectedRows[0].DataBoundItem as GetRelatedOrders;
 
-            MessageBox.Show(selectedItem.PersonName);
-
             var order = OrderBLL.GetOrderObjByNumber(selectedItem.OrderNumber);
-
             OrderForSendToUpdate = order;
-
-
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -124,15 +120,14 @@ namespace RangarangTest_UI
 
         private void btnExit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+              Application.Exit();
         }
 
         //private methods
 
         private void SetAllRelatedsToDataGrid()
         {
-            List<GetRelatedOrders> relatedRes = OrderBLL.GetListOffRelatedsToOrder();
-            
+             List<GetRelatedOrders> relatedRes = OrderBLL.GetListOffRelatedsToOrder();
 
             DG_RelatedOrders.DataSource = null;
             DG_RelatedOrders.DataSource = relatedRes;
@@ -146,6 +141,7 @@ namespace RangarangTest_UI
             try
             {
                 List<GetRelatedOrders> getRelateds = OrderBLL.GetListOffRelatedsToOrder();
+                
 
                 List<GetRelatedOrders> relatedresu = new List<GetRelatedOrders>();
                 foreach (var relate in getRelateds)
@@ -172,6 +168,34 @@ namespace RangarangTest_UI
             }
 
         }
+
+
+        private void SetDataGridAfterUpdate()
+        {
+            List<GetRelatedOrders> relatedRes = OrderBLL.GetListOffRelatedsToOrder();
+
+
+            var od = Order.GetOrderDetailsByOrderId(OrderForSendToUpdate.Id);
+            long newTotalPrice = 0;
+            foreach (var item in od)
+            {
+                newTotalPrice += item.SumPrice;
+            }
+            var orderFromDb = OrderBLL.GetOrderObjByNumber(OrderForSendToUpdate.Number);
+            var getPerson = PersonBll.GetPersonById(orderFromDb.PersonId);
+            foreach (var item in relatedRes)
+            {
+                if (item.OrderNumber == OrderForSendToUpdate.Number)
+                {
+                    item.TotalPrice = newTotalPrice;
+                    item.OrderDate = orderFromDb.Date.Date;
+                    item.PersonName = getPerson.Name;
+                } 
+            }
+            DG_RelatedOrders.DataSource = null;
+            DG_RelatedOrders.DataSource = relatedRes;
+        }
+
 
     }
 }
